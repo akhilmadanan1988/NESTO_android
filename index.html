@@ -18,7 +18,11 @@
 	<script src="js/login.js"></script>
 	
 	<script type="text/javascript" charset="utf-8">
-		$(document).ready(function () {
+		
+        
+        
+        
+        $(document).ready(function () {
            // alert(localStorage);
 			//alert(localStorage.CardNumber);
 			
@@ -28,7 +32,7 @@
                 
 				if(localStorage.CardNumber != '' && typeof localStorage.CardNumber != 'undefined')
 				{
-                    navigator.splashscreen.hide();
+                    //navigator.splashscreen.hide();
 					window.location="pointDetails.html";
 				}
 				else
@@ -43,7 +47,7 @@
 		
 		function DataFetchedInIndex(result)
 		{
-            navigator.splashscreen.hide();
+           // navigator.splashscreen.hide();
 			if(result.ApiResponse.StatusCode == 1)
 			{
 				if(result.PromotionList != null)
@@ -65,7 +69,7 @@
 		
 	function errorfunction()
 		{
-            navigator.splashscreen.hide();
+           //navigator.splashscreen.hide();
 		}
 		
 	 function checkConnection() 
