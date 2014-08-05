@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+    <div class="sliderHolder ui-responsive-panel" data-role="page" id="gallery">
+        <script src="js/jsEvents.js"></script>
+        <div id="fullscreen_slider" class="slider" data-elem="slider">
+            <div class="sliderBg darkGray"></div>
+            <div class="slides" data-elem="slides" data-options="adjustHeight:-30; preloaderUrl:assets/preloader.gif; loadIndexOnly:false;" id="divImages"></div>
+            <div class="thumbsHolder" data-elem="thumbsHolder">
+                <div class="thumbs blackBgAlpha60" data-elem="thumbs" data-options="space:2; setParentVisibility:true; initShow:false; preloaderUrl:assets/preloader.gif" data-show="bottom:0px; position:absolute; display:block" data-hide="bottom:-100%; display:block"></div>
+            </div>
+            <div class="captionHolder" data-elem="captionHolder">
+                <div class="caption blackBgAlpha60" data-elem="caption" data-options="initShow:true; setHolderHeight:true;" data-show="top:0%; display:block; autoAlpha:1;" data-hide="top:-60px; display:none; autoAlpha:0; ease:Power4.easeIn"></div>
+            </div>
+            <div class="controlHolder">
+                <div class="autoPlayIcon controlPos1" data-elem="autoPlay" data-on="background-position:-25px 0px;" data-off="background-position:0px 0px;"></div>
+                <div class="prevIcon controlPos2" data-elem="prev" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"></div>
+                <div class="nextIcon controlPos3" data-elem="next" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"></div>
+                <div class="zoomOutIcon controlPos4" data-elem="zoomOut" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"></div>
+                <div class="zoomInIcon controlPos5" data-elem="zoomIn" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"></div>
+                <div class="thumbsOnIcon controlPos6" data-elem="thumbsToggle" data-on="background-position:-200px 0px;" data-off="background-position:-225px 0px;"></div>
+            </div>
+            <ul data-elem="items" id="ulImages">
+                <!-- <li>
+                    <a href="assets/1.jpg">
+                        <img src="assets/thumbs/1.jpg" alt="Image 01" />
+                    </a>
+                    <div data-elem="imgCaption">
+                        <div class="superCaption">On a touch device you can use <span class="nColor"><em><strong>pinch to zoom</strong></em></span>, <span class="nColor"><em><strong>drag</strong></em></span> to move the zoomed image, or <span class="nColor"><em><strong>swipe</strong></em></span> to cycle through images.</div>
+                    </div>
+                </li>
+                <li>
+                    <a href="assets/2.jpg">
+                        <img src="assets/thumbs/2.jpg" alt="Image 02" />
+                    </a>
+                    <div data-elem="imgCaption">
+                        <div class="superCaption">On a PC you can use <em><strong><span class="nColor">mousescroll to zoom</span></strong></em>, <span class="nColor"><strong><em>drag</em></strong></span> to move the zoomed image or cycle through images.</div>
+                    </div>
+                </li>-->
+                <!--  <li>
+                    <a href="assets/1.jpg">
+                        <img src="assets/thumbs/1.jpg" alt="Image 03" />
+                    </a>
+                    <div data-elem="imgCaption">
+                        <div class="superCaption">
+                            Be creative with your image description. Add <span class="nColor">color</span>, <a href="http://codecanyon.net/user/ronfeliciano/?ref=ronfeliciano" target="_blank">links</a> or even images
+							<img src="assets/tiny_logo.png" alt="rf tiny logo" />
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="assets/2.jpg">
+                        <img src="assets/thumbs/2.jpg" alt="Image 04" />
+                    </a>
+                    <div data-elem="imgCaption">
+                        <div class="superCaption"><strong><span class="touchLightColor">Touch</span><span class="nColor">N</span><span class="swipeColor">Swipe</span></strong> works on any window size. <span class="nColor"><em><strong>Resize</strong></em></span> your window to see it work.</div>
+                    </div>
+                </li>
+                <li>
+                    <a href="assets/1.jpg">
+                        <img src="assets/thumbs/1.jpg" alt="Image 05" />
+                    </a>
+                    <div data-elem="imgCaption">
+                        <div class="superCaption"><strong><span class="touchLightColor">Touch</span><span class="nColor">N</span><span class="swipeColor">Swipe</span></strong> has tons of <strong><em><span class="nColor">settings</span></em></strong>. Create your own look or build from starter templates.</div>
+                    </div>
+                </li>
+                <li>
+                    <a href="assets/2.jpg">
+                        <img src="assets/thumbs/2.jpg" alt="You can also set the description in the alt tag if you don't need CSS styling" />
+                    </a>
+                </li>-->
+            </ul>
+        </div>
+       
+        <h2 style="text-align: left;" class="sliderHead">
+            <a href="promotions.html" data-rel="back" data-direction="reverse">
+                <span class="glyphicon glyphicon-chevron-left headerIcon"></span>
+            </a>FESTIVE DRIVE
+        </h2>
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link href="css/touchnswipe.min.css" rel="stylesheet" />
+        <link href="css/fullscreen.css" rel="stylesheet" />
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jsEvents.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+</head>
+<body >
+    <div data-role="page" id="settings" class="ui-responsive-panel">
+        <script src="js/jsEvents.js"></script>
+        <!-- defaultpanel  -->
+        <!-- leftpanel3  -->
+        <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
+            <img src="images/shadowLight.png" class="shadowHolder" />
+            <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
+                <img src="images/menu.png" width="37" /></a>
+            <div class="navigationHolder"></div>
+            <ul data-role="listview">
+                <a onclick="CheckUserExistanceAndNavigate()" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-home"></span>Home</li>
+                </a><a href="promotions.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-gift"></span>Promotions</li>
+                </a><a href="#" data-transition="slide">
+                    <li onclick="onStoreLocationsLoad()"><span class="glyphicon glyphicon-map-marker"></span>Store Locations</li>
+                </a><a href="about.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-info-sign"></span>About Us</li>
+                </a><a href="settings.html" data-transition="slide">
+                    <li class="activeLink"><span class="glyphicon glyphicon-cog"></span>Settings</li>
+                </a>
+            </ul>
+        </div>
+        <!-- /leftpanel3 -->
+        <!-- /defaultpanel -->
+        <div data-role="header" class="customHeader">
+            <!-- <a href="#leftpanel3" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid ui-btn-icon-notext"></a>-->
+            <a href="#leftpanel3" class="pull-left sliderIcon">
+                <img src="images/menu.png" /></a>
+            <img src="images/logo.png" width="185" class="mobileCustomizeLogo" />
+        </div>
+        <div class="seperationBar">
+            <h5>All that you need.</h5>
+        </div>
+        <div data-role="content" class="contentHolder">
+            <div class="container">
+                <div class="row mobilePad">
+                    <div class="col-md-12 pageArea ">
+                        <h2 style="text-align: left;"><a href="#" data-rel="back" data-direction="reverse"><span class="glyphicon glyphicon-chevron-left headerIcon"></span></a>SETTINGS</h2>
+
+
+                        <h2 class="subHead">APP SETTINGS</h2>
+                        <div class="col-md-3 col-sm-4">
+                            <label>Country</label>
+                        </div>
+                        <div class="col-md-9 col-sm-8 selectHolder">
+
+                            <select name="select-choice-1" id="select-choice-1" >
+                                <!-- <option value="United Arab Emirates">United Arab Emirates</option>
+			    <option value="India">India</option>
+			    <option value="Australia">Australia</option>
+			    <option value="China">China</option>-->
+
+                            </select>
+
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-xs-7">
+                            <label>App Details </label>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-5">
+                            <label id="version"></label>
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-xs-7">
+                            <label>Recieve Notification</label>
+                        </div>
+                        <div class="col-md-9 col-sm-8 checkboxHolder col-xs-5" style="height: 38px;">
+                            <input id="checkbox" type="checkbox" onchange="changeNotification()" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true" value="block">
+                            <!-- <label for="checkbox-mini-0"></label>-->
+                        </div>
+                        <div style="clear: both;"></div>
+                        <h2 class="subHead">GENERAL</h2>
+                        <div class="col-md-12">
+                            <a href="#" id="loyalityProgram" target="_blank">
+                                <label style="cursor: pointer;">Loyalty Program Details </label>
+                            </a>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="col-md-12">
+                            <a href="#" id="termsnConditions" target="_blank">
+                                <label style="cursor: pointer;">Terms and Conditions </label>
+                            </a>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="col-md-12">
+                            <a href="#" target="_blank" id="faq">
+                                <label style="cursor: pointer;">FAQ</label></a>
+                        </div>
+
+                        <div class="col-md-12">
+                            <a href="#" target="_blank" id="specialRewards">
+                                <label>Special Rewards </label>
+                            </a>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="col-md-12">
+                            <a href="#" id="storeLocations" target="_blank">
+                                <label>Store Locations </label>
+                            </a>
+                        </div>
+                        <div id="message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
+                        </div>
+                        <div style="clear: both"></div>
+
+
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

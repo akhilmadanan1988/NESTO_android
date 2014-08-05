@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+	<script src="js/jsEvents.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script src="js/ajaxCall.js"></script>
+	<script src="js/login.js"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function () {
+//              alert(localStorage);
+//            alert(localStorage.CardNumber);
+            //checkConnection();
+            navigator.splashscreen.hide();
+            
+			if(localStorage != null)
+			{
+				if(localStorage.CardNumber != '' && typeof localStorage.CardNumber != 'undefined')
+                    {
+                        
+                        window.location="pointDetails.html";
+                    }
+				else
+				{
+                    
+				 	localStorage.DeviceType = 1;
+					var reqData = {"AppType":""+ localStorage.DeviceType +"","DeviceId":""+ localStorage.DeviceId +"","IPAddress":"", "UserId": ""+ 0 + ""}
+					ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,DataFetchedInIndex,errorfunction);
+                    
+                    	
+				}
+			}
+        });
+		
+		function DataFetchedInIndex(result)
+		{
+			if(result.ApiResponse.StatusCode == 1)
+			{
+				if(result.PromotionList != null)
+				{
+					if(result.PromotionList[0] != null)
+						localStorage.PromotionImage1= result.PromotionList[0].PromotionThumbnail;
+
+					if(result.PromotionList[1] != null)
+						localStorage.PromotionImage2 = result.PromotionList[1].PromotionThumbnail;
+				}
+			}
+            
+			$('#imgPromotionImage1').attr('src', localStorage.PromotionImage1);
+			$('#imgPromotionImage2').attr('src', localStorage.PromotionImage2);
+            
+			
+            
+            
+            document.addEventListener("backbutton", onBackKeyDown, false);
+		}
+		
+		function errorfunction()
+		{
+			
+		}
+		
+		 function checkConnection() 
+		{
+			
+			var networkState = navigator.connection.type;
+
+			var states = {};
+			states[Connection.UNKNOWN]  = 'Unknown connection';
+			states[Connection.ETHERNET] = 'Ethernet connection';
+			states[Connection.WIFI]     = 'WiFi connection';
+			states[Connection.CELL_2G]  = 'Cell 2G connection';
+			states[Connection.CELL_3G]  = 'Cell 3G connection';
+			states[Connection.CELL_4G]  = 'Cell 4G connection';
+			states[Connection.CELL]     = 'Cell generic connection';
+			states[Connection.NONE]     = 'No network connection';
+			
+			if(states[networkState] == 'No network connection')
+			{
+				 
+			  navigator.notification.confirm(
+						'No internet connect. please connect the internet and relaunch the application.', 
+						onConfirmQuit, 
+						'No internet connect', 
+						'OK,Cancel'  
+					);
+                
+                 function onConfirmQuit(button)
+                      {
+                         if(button == "1")
+                         {
+
+                             navigator.app.exitApp(); 
+
+                         }
+
+                      }
+			}
+			
+		}
+        
+        function onBackKeyDown()
+		{
+			  alert($.mobile.activePage[0].baseURI);
+            
+            var current_url = $.mobile.activePage[0].baseURI;
+               
+            
+            if(current_url == "file:///android_assest/www/index.html")
+            {
+                
+		  navigator.notification.confirm('Are you sure ?', 
+					  onConfirmQuit, 
+					  'Quit?', 
+					  'OK,Cancel'  
+						);
+            
+                alert("quit");
+                
+             function onConfirmQuit(button)
+                  {
+                    if(button == "1")
+                     {
+
+                         navigator.app.exitApp(); 
+
+                     }
+
+                  }
+            }
+            else
+            {
+                
+                 navigator.app.backHistory();
+                
+            }
+            
+		}
+        
+       
+
+		
+		//	navigator.splashscreen.hide();
+         //   var db = window.openDatabase("nesto", "1.0", "Nesto DB", 1000000);
+        //}        
+        // Populate the database 
+        // Transaction error callback
+        //
+        //function errorCB(tx, err) {
+        //    alert("Error processing SQL: " + err);
+        //}
+
+        // Transaction success callback
+        //
+        //function successCB() {
+        //    alert("success!");
+        //}
+    </script>
+
+</head>
+<body>
+    <div data-role="page" id="home" class="ui-responsive-panel">
+        <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
+
+            <img src="images/shadowLight.png" class="shadowHolder" />
+            <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
+                <img src="images/menu.png" width="37" /></a>
+            <div class="navigationHolder"></div>
+            <ul data-role="listview">
+                <a onclick="CheckUserExistanceAndNavigate()" data-transition="slide">
+                    <li class="activeLink"><span class="glyphicon glyphicon-home"></span>Home</li>
+                </a><a href="promotions.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-gift"></span>Promotions</li>
+                </a><a href="#" data-transition="slide">
+                    <li onclick="onStoreLocationsLoad()"><span class="glyphicon glyphicon-map-marker"></span>Store Locations</li>
+                </a><a href="about.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-info-sign"></span>About Us</li>
+                </a><a href="settings.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-cog"></span>Settings</li>
+                </a>
+            </ul>
+        </div>
+        <!-- /leftpanel3 -->
+        <!-- /defaultpanel -->
+        <div data-role="header" class="customHeader">
+            <a href="#leftpanel3" class="pull-left sliderIcon">
+                <img src="images/menu.png" /></a>
+            <img src="images/logo.png" width="185" class="mobileCustomizeLogo" />
+        </div>
+        <div class="seperationBar">
+            <h5>All that you need.</h5>
+        </div>
+        <div data-role="content" class="contentHolder">
+            <div class="container">
+                <div class="row mobilePad">
+                    <div class="col-md-12 pageArea">
+                        <h2>LOGIN</h2>
+                        <table class="table tableListing tableContent" style="margin-bottom: 0">
+                            <tbody>
+                                <tr>
+                                    <td><label for="textinput-fc" style="position: relative; left: -4px;">MyNesto Card Number</label></td>
+                                    <td><input type="text" name="text-basic" id="txtCardNumber" value=""></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="textinput-fc" style="position: relative; left: -4px;">Password</label></td>
+                                    <td><input type="password" name="text-basic" id="txtPassword" value=""></td>
+                                </tr>
+								<tr >
+								<td colspan="2">
+									<div id="LoginMessage" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px;display:none;" ></div>
+								</td>
+								</tr>
+                                <td>
+                                    <label for="text-basic"><a href="forgetPwd.html" class="link" data-transition="slide" style="font-size: 12px; position: relative; left: -4px;">Forgot Password</a></label></td>
+                                <td class="loginAreaButton" nowrap="nowrap"><a class="ui-btn ui-btn-inline pad5 logBut" data-transition="slide" onclick="login()">Login</a> <a href="activateAccount.html" data-transition="slide">
+                                    <button class="ui-btn ui-btn-inline pad5 activateBut">Activate Account</button>
+                                </a>
+                                </td>
+                                </tr>
+                      
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--end row-->
+                <div class="row mobilePad topPad0">
+                    <div class="col-md-12 pageArea">
+                        <h2 style="margin-bottom: 0">PROMOTIONS</h2>
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a alignCenter" style="padding-right: 3px;">
+                                <div class="ui-bar ui-bar-a promotionImgHolder"><a href="promotions.html" data-transition="slide">
+                                    <img id="imgPromotionImage1"  /></a> </div>
+                            </div>
+                            <div class="ui-block-b alignCenter" style="padding-right: 3px; position: relative; left: 3px;">
+                                <div class="ui-bar ui-bar-a promotionImgHolder"><a href="promotions.html" data-transition="slide">
+                                    <img  id="imgPromotionImage2"  /></a></div>
+                            </div>
+                        </div>
+                        <!-- /grid-a -->
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </div>
+    </div>
+	<script>	
+//	$(window).bind("pageshow", function() {
+//    $('#txtPassword').val("");
+//		$('#txtCardNumber').val("");
+//		$('#LoginMessage').css('display', 'none');
+//	});
+
+</script>
+
+</body>
+</html>

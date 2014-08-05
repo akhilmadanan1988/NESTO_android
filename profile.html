@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jsEvents.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/activate-accordian.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+	
+<!--	<script>
+	$(document).ready(function() {
+    onProfileLoad()
+});
+	</script>-->
+</head>
+<body>
+    <div data-role="page" id="ProfilePage" class="ui-responsive-panel">
+        <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
+            <img src="images/shadowLight.png" class="shadowHolder" />
+            <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
+                <img src="images/menu.png" width="37" /></a>
+            <div class="navigationHolder"></div>
+            <ul data-role="listview">
+                <a onclick="CheckUserExistanceAndNavigate()" data-transition="slide">
+                    <li class="activeLink"><span class="glyphicon glyphicon-home"></span>Home</li>
+                </a><a href="promotions.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-gift"></span>Promotions</li>
+                </a><a href="#" data-transition="slide">
+                    <li onclick="onStoreLocationsLoad()"><span class="glyphicon glyphicon-map-marker"></span>Store Locations</li>
+                </a><a href="about.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-info-sign"></span>About Us</li>
+                </a><a href="settings.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-cog"></span>Settings</li>
+                </a>
+            </ul>
+        </div>
+        <!-- /leftpanel3 -->
+        <!-- /defaultpanel -->
+        <div data-role="header" class="customHeader">
+            <a href="#leftpanel3" class="pull-left sliderIcon">
+                <img src="images/menu.png" /></a>
+            <img src="images/logo.png" width="185" class="mobileCustomizeLogo" />
+        </div>
+        <div class="seperationBar">
+            <h5>All that you need.</h5>
+        </div>
+        <div data-role="content" class="contentHolder">
+            <div class="container">
+                <div class="row mobilePad">
+                    <div class="col-md-12 pageArea profileArea">
+                        <h2 style="text-align: left;"><a href="#" data-rel="back" data-direction="reverse"><span class="glyphicon glyphicon-chevron-left headerIcon"></span></a>PROFILE</h2>
+
+                        <table class="table tableListing">
+
+                            <tbody>
+                                <tr>
+                                    <td nowrap="nowrap" class="lessPadLeft">
+                                        <label for="textinput-fc">Card Number</label>
+                                        <span class="colon">:</span></td>
+                                    <td>
+                                        <label id="cardnumber"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="lessPadLeft">
+                                        <label for="textinput-fc">Name</label>
+                                        <span class="colon">:</span></td>
+                                    <td>
+                                        <label id="name"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="lessPadLeft">
+                                        <label for="textinput-fc">Email</label>
+                                        <span class="colon">:</span></td>
+                                    <td>
+                                        <label style="word-break: break-all;" id="email"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="lessPadLeft">
+                                        <label for="textinput-fc">Country</label>
+                                        <span class="colon">:</span></td>
+                                    <td>
+                                        <label id="country"></label>
+                                    </td>
+                                </tr>
+                                <tr>                                   
+                                    <td colspan="2">
+                                        <div id="message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
+                                        </div>
+                                        <div style="clear: both"></div>
+                                        <label for="textinput-fc">&nbsp;</label></td>
+                                  
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="textinput-fc">&nbsp;</label></td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td class="lessPadLeft"><a href="index.html" data-transition="slide" onclick="logOut" class="ui-btn ui-btn-inline pad5">Logout</a> </td>
+                                                <td class="lessPadLeft"><a href="editProfile.html" data-transition="slide">
+                                                    <button class="ui-btn ui-btn-inline pad5">Edit</button></a></td>
+                                            </tr>
+                                        </table>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
