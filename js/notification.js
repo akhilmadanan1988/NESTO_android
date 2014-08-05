@@ -4,7 +4,7 @@
 
      function onDeviceReady() {
 			
-		
+		alert(device.platform);
          
          pushNotification = window.plugins.pushNotification;
          
