@@ -1,11 +1,11 @@
   document.addEventListener("deviceready", onDeviceReady, true);
 
+alert("out device ready");
     var pushNotification;
 
      function onDeviceReady() {
-			
-		alert(device.platform);
-         
+	
+         alert("on device ready");
          pushNotification = window.plugins.pushNotification;
          
          alert(device.platform);
@@ -130,24 +130,11 @@
         {
             if ( event.alert )
                 {
-               alert(event.alert);
+               
+                    alert(event.alert);
                     
                     // Schedules a local notification to be triggered after 5 seconds
-            window.plugins.localNotification.add({
-                fireDate        : Math.round(new Date().getTime()/1000 + 5),
-                alertBody       : "This is a local notification.",
-                action          : "View",
-                repeatInterval  : "daily",
-                soundName       : "",
-                badge           : 0,
-                notificationId  : 123,
-                foreground      : function(notificationId){ 
-                    alert("Hello World! This alert was triggered by notification " + notificationId); 
-                },
-                background  : function(notificationId){
-                    alert("Hello World! This alert was triggered by notification " + notificationId);
-                }           
-            });
+           
             
                 }
 
