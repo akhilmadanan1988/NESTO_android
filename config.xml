@@ -26,7 +26,7 @@
         
       <gap:plugin name="com.phonegap.plugins.pushplugin" />
         
-    <name>NESTO</name>
+    <name>NESTO Android</name>
     <description>
         NESTO
     </description>
