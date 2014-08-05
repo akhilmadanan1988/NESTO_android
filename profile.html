@@ -21,6 +21,7 @@
 </head>
 <body>
     <div data-role="page" id="ProfilePage" class="ui-responsive-panel">
+         <script src="js/jsEvents.js"></script>
         <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
             <img src="images/shadowLight.png" class="shadowHolder" />
             <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
@@ -105,7 +106,7 @@
                                     <td>
                                         <table>
                                             <tr>
-                                                <td class="lessPadLeft"><a href="index.html" data-transition="slide" onclick="logOut" class="ui-btn ui-btn-inline pad5">Logout</a> </td>
+                                                <td class="lessPadLeft"><a href="index.html" data-transition="slide" onclick="logOut()" class="ui-btn ui-btn-inline pad5">Logout</a> </td>
                                                 <td class="lessPadLeft"><a href="editProfile.html" data-transition="slide">
                                                     <button class="ui-btn ui-btn-inline pad5">Edit</button></a></td>
                                             </tr>

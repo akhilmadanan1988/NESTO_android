@@ -7,26 +7,25 @@ $(document).ready(function () {
 /*Edit Profile page functionalities Begins*/
 function onEditProfileLoad() {
 
-    $("#cardnumber").text(localStorage.CardNumber);
-    $("#name").val(localStorage.CustomerName);
-    $("#email").val(localStorage.Email);
+    $("label#cardnumber").text(localStorage.CardNumber);
+    $("input#name").val(localStorage.CustomerName);
+    $("input#email").val(localStorage.Email);
 
 }
 
 
 function onSave() {
-
     var isOk = false;
     var cardNumber = localStorage.CardNumber;
 
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var currentPassword = $("#currentPassword").val();
-    var newPassword = $("#newPassword").val();
-    var retypePassword = $("#retypePassword").val();
-    var chkbxChangePassword = $("#checkbox").attr("data-cacheval");
-  
-    if (name == "") {
+    var name = $("input#name").val();
+    var email = $("input#email").val();
+    var currentPassword = $("input#currentPassword").val();
+    var newPassword = $("input#newPassword").val();
+    var retypePassword = $("input#retypePassword").val();
+    var chkbxChangePassword = $("input#checkbox").attr("data-cacheval");
+
+    if (name.trim() == "") {
         showMessage("Please enter your name", 0);
     }
     else if (name.length > 100) {
@@ -89,12 +88,13 @@ function onSave() {
 
     if (isOk) {
         var reqData;
-        var encryptCurrentPassword = "";
+        var encryptCurrentPassword = "", encryptNewPassword="";
         if (currentPassword.trim() != "")
             encryptCurrentPassword = EncryptPassword(currentPassword);
+        if (newPassword.trim() != "")
+            encryptNewPassword = EncryptPasswordUsingDES(newPassword);
 
-        reqData = { "CardNumber": "" + cardNumber + "", "Email": "" + email + "", "Name": "" + name + "", "CurrentPassword": "" + encryptCurrentPassword.trim() + "", "NewPassword": "" + newPassword.trim() + "" }
-
+        reqData = { "CardNumber": "" + cardNumber + "", "Email": "" + email + "", "Name": "" + name + "", "CurrentPassword": "" + encryptCurrentPassword.trim() + "", "NewPassword": "" + encryptNewPassword.trim() + "" }
 
         ajaxcall("UpdateUserProfile", reqData, IsUpdateUserProfileResponseSuccess, errorfunction);
     }
@@ -103,13 +103,13 @@ function onSave() {
 
 function showMessage(message, isSuccess) {
 
-    $("#message").html(message);
-    $('#message').css('display', 'block');
+    $("div#message").html(message);
+    $('div#message').css('display', 'block');
     if (isSuccess == 1) {
-        $('#message').css('background-color', 'green');
+        $('div#message').css('background-color', 'green');
     }
     else {
-        $('#message').css('background-color', 'rgb(226, 110, 110)');
+        $('div#message').css('background-color', 'rgb(226, 110, 110)');
         $("#forgetPwd_cardNumber").focus();
     }
 }
@@ -121,7 +121,7 @@ function errorfunction() {
 
 
 function IsUpdateUserProfileResponseSuccess(result) {
-     if (result.ApiResponse.StatusCode == 1) {
+    if (result.ApiResponse.StatusCode == 1) {
 
         localStorage.CustomerName = result.UserDetails.CustomerName;
         localStorage.Email = result.UserDetails.Email;
@@ -131,10 +131,10 @@ function IsUpdateUserProfileResponseSuccess(result) {
     }
     else {
         showMessage(result.ApiResponse.Details, 0);
-        $("#currentPassword").val("");
-        $("#newPassword").val("");
-        $("#retypePassword").val("");
-        $("#currentPassword").focus();
+        $("input#currentPassword").val("");
+        $("input#newPassword").val("");
+        $("input#retypePassword").val("");
+        $("input#currentPassword").focus();
     }
 }
 /*Edit Profile page functionalities Ends*/

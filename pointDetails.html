@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
-    
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jsEvents.js"></script>
     <script src="js/jquery.mobile-1.4.2.min.js"></script>
@@ -22,45 +20,6 @@
 			$('#imgPromotionImage2').attr('src', localStorage.PromotionImage2)
 			fillPointDetails();
 		});
-        
-      document.addEventListener("backbutton", onBackKeyDown, false);
-		
-      function onBackKeyDown()
-		{
-			  
-            
-             var current_url = $.mobile.activePage[0].baseURI;
-            //alert(current_url);
-            
-           if(current_url == "file:///android_asset/www/pointDetails.html")
-            {
-             // alert(current_url);
-            
-		  navigator.notification.confirm
-					('Are you sure ?', 
-					  onConfirmQuit, 
-					  'Quit?', 
-					  'OK,Cancel'  
-						);
-                
-            }
-           else
-            {
-                
-                 navigator.app.backHistory();
-                
-            }
-            
-		}
-        
-        function onConfirmQuit(button)
-		  {
-			 if(button == "1")
-			 {
-			   navigator.app.exitApp(); 
-			 }
-										
-		  }
 	</script>
 
 </head>

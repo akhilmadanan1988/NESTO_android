@@ -18,10 +18,10 @@ $(document).ready(function () {
 
      if (localStorage.CardNumber.trim() != '' && localStorage.CustomerName.trim() != '' && localStorage.Email.trim() != '' && localStorage.CustomerName.trim() != '') {
 
-        $("#cardnumber").text(localStorage.CardNumber);
-        $("#name").text(localStorage.CustomerName);
-        $("#email").text(localStorage.Email);
-        $("#country").text(localStorage.CountryName);
+        $("label#cardnumber").text(localStorage.CardNumber);
+        $("label#name").text(localStorage.CustomerName);
+        $("label#email").text(localStorage.Email);
+        $("label#country").text(localStorage.CountryName);
     }
     else {
         //TODO: If there is no content available, call API GetAuthenticatedUserDetails   
@@ -45,7 +45,7 @@ function logOut() {
     localStorage.RedeemablePoints = "";
     localStorage.RedeemedPoints = "";
     localStorage.TotalPoints = "";
-	alert(localStorage.PromotionImage1);
+    alert(localStorage.UserId);
     //window.location = "index.html";
 
 }

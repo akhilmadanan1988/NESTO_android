@@ -8,7 +8,6 @@ $(function () {
 		
 		if (_thisid === 'home') {
 			$.getScript('js/login.js');
-           
 			localStorage.CardNumber = "";
 		}
 		else if (_thisid === 'forgotPassword')
@@ -70,6 +69,29 @@ $(function () {
         $('.visibleRow').css("display", "block");
     });
 });
+function onStoreLocationsLoad() {
+    window.open(localStorage.StoreDetailsURl);
+
+}
+function EncryptPasswordUsingDES(plaintext) {
+    window.text = plaintext;
+    window.key = "3ARZARPA55K3Y";
+    var useHashing = true;
+    if (useHashing) {
+        key = CryptoJS.MD5(key).toString();
+        var k1 = key.substring(0, 16);
+        key = key + k1;
+    }
+    window.options = {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    };
+    window.textWordArray = CryptoJS.enc.Utf8.parse(text);
+    window.keyHex = CryptoJS.enc.Hex.parse(key);
+    window.encrypted = CryptoJS.TripleDES.encrypt(textWordArray, keyHex, options);
+    var encryptedPassword = encrypted.toString();
+    return encryptedPassword;
+}
 
 function EncryptPassword(pass) {    
 	var saltReturn = '';

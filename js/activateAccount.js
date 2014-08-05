@@ -112,8 +112,8 @@ function verifyAccount() {
 										$.mobile.loading('show',{theme: 'a',textVisible: 'true' });
 										//var encrypted = CryptoJS.TripleDES.encrypt($('#verify_password').val() , "3ARZARPA55K3Y"); 
 										//alert(encrypted);
-										//var encryptPassword = EncryptPassword($('#verify_password').val());
-										var reqData = { "CardNumber": "" + cardNumber + "", "MobileNumber": "" + $("#activateAccount_mobileno").val() + "", "Email": "" + $("#verify_email").val() + "", "Name": "" + $("#verify_name").val() + "", "Password": "" + $('#verify_password').val() + "", "CountryId": +countryId }
+										var encryptPassword = EncryptPasswordUsingDES($('#verify_password').val());
+										var reqData = { "CardNumber": "" + cardNumber + "", "MobileNumber": "" + $("#activateAccount_mobileno").val() + "", "Email": "" + $("#verify_email").val() + "", "Name": "" + $("#verify_name").val() + "", "Password": "" + encryptPassword + "", "CountryId": +countryId }
 										ajaxcall("UpdateUserDetailAndActivateAccount", reqData, IsVerifyResponseSuccess, errorfunctionVerify);
 		
                                     }

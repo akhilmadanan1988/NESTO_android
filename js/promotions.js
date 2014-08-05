@@ -22,16 +22,44 @@ function showProfileLink() {
     }
 
 }
-
+Storage.prototype.getArray = function (key) {
+    return JSON.parse(this.getItem(key))
+}
 function fillCountry() {
-    //TODO: Load the Service available country list seperately
-    var UserId = localStorage.UserId;
-    var DeviceId = localStorage.DeviceId;
-    var reqData = { "DeviceId": "" + DeviceId + "", "UserId": UserId }
 
-    //TODO: Check for the local DB if contents re available.If no details are foung then call tha API
-    ajaxcall("GetSettingsContent", reqData, IsGetSettingsContentResponseSuccess, errorfunction);
+    var ServiceAvailableCountres = window.localStorage.getArray("ServiceAvailableCountres");
 
+    if (ServiceAvailableCountres != "") {
+
+        $('#select-choice-1').empty();
+        var CountryName = "";
+
+        $.each(ServiceAvailableCountres, function (index, value) {
+            if (index == 0) {
+                CountryName = value.CountryName;
+            }
+            if (value.IsDefault == 1) {
+                CountryName = value.CountryName;
+            }
+            $('#select-choice-1').append(new Option(value.CountryName, value.CountryId));
+
+        });
+
+        $("#select-choice-1-button span").text(CountryName);
+    }
+    else {
+
+        var UserId, DeviceId;
+        DeviceId = localStorage.DeviceId;
+
+        if (localStorage.UserId.trim() == "")
+            UserId = 0;
+        else
+            UserId = localStorage.UserId;
+        var reqData = { "DeviceId": "" + DeviceId + "", "UserId": "" + UserId + "" }
+
+        ajaxcall("GetSettingsContent", reqData, IsGetSettingsContentResponseSuccess, errorfunction);
+    }
 }
 
 
@@ -39,11 +67,19 @@ function IsGetSettingsContentResponseSuccess(result) {
 
     if (result.ApiResponse.StatusCode == 1) {
         $('#select-choice-1').empty();
-
+        var CountryName = "";
         $.each(result.ServiceAvailableCountries, function (index, value) {
+            if (index == 0) {
+                CountryName = value.CountryName;
+            }
+            if (value.IsDefault == 1) {
+                CountryName = value.CountryName;
+            }
             $('#select-choice-1').append(new Option(value.CountryName, value.CountryId));
         });
-		$("#select-choice-1-button span").text("United Arab Emrites");
+
+
+        $("#select-choice-1-button span").text(CountryName);
     }
     else {
         showMessage(result.ApiResponse.Details, 0);

@@ -40,7 +40,8 @@ $('#LoginMessage').html("Some error occurred.").show();
 
 function IsLoginResponseSuccess(result)
 {   
-	$.mobile.loading('hide');
+    $.mobile.loading('hide');
+ 
 	if (result.ApiResponse.StatusCode == 1){
 		
 		//Save User Id in Local Storage
@@ -53,18 +54,16 @@ function IsLoginResponseSuccess(result)
 		localStorage.CountryID = result.UserDetail.CountryID;
 		localStorage.CountryName = result.UserDetail.CountryName;
 		localStorage.UserId = result.UserDetail.UserId;
-		
-		
-
+	
 		//Save Gift Details in local storage
 		localStorage.GiftStatus = result.EligibleGift.Status;
 
 
 	    //TODO: Need to remove if the data is loaded propely
-		localStorage.UserId = 3;
+
 		localStorage.DeviceId = "DeviceId6";
 		localStorage.version = "V1.0.0";
-		
+
 		if(localStorage.GiftStatus == "Success")
 		{
 			localStorage.GiftImageURL = result.EligibleGift.GiftImageUrl;
