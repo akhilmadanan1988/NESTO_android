@@ -5,10 +5,10 @@ alert("out device ready");
 
      function onDeviceReady() {
 	
-         alert("on device ready");
+//         alert("on device ready");
          pushNotification = window.plugins.pushNotification;
          
-         alert(device.platform);
+//         alert(device.platform);
          
          if ( device.platform == 'android' || device.platform == 'Android' )
                     {
@@ -42,13 +42,13 @@ alert("out device ready");
         function successHandler (result) 
             {
                 
-            alert('result = ' + result);
+//            alert('result = ' + result);
                 
             }
 
         function errorHandler (error)
             {
-            alert('error = ' + error);
+//            alert('error = ' + error);
              }
 
 
@@ -56,13 +56,13 @@ alert("out device ready");
   function onNotificationGCM(e) 
     {
         
-   alert(123);
+//   alert(123);
         
         switch( e.event )
             {
               case 'registered':
                     
-                    alert(e.regid);
+//                    alert(e.regid);
                     
                  var reqData ={"AppType":"2","DeviceId":""+e.regid+"","IPAddress":"","UserId":"0"};
                 ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,IsDeviceRegResponseSuccess,errorfunction);
@@ -89,7 +89,7 @@ alert("out device ready");
     function IsDeviceRegResponseSuccess(result)
         {
 
-          alert(result);
+//          alert(result);
 //            var resMessage = result.ApiResponse.Message;            
 //           alert(result.ApiResponse.Message);
 //            if(resMessage == "Success")
@@ -106,7 +106,7 @@ alert("out device ready");
     function errorfunction()
         {
 
-                alert(1233);
+//                alert(1233);
 
         }
 
@@ -114,13 +114,13 @@ alert("out device ready");
 // iOS
         function successHandler(result)
         {
-            alert('result = ' + result);
+//            alert('result = ' + result);
         }
     function tokenHandler (result) 
         {
         // Your iOS push server needs to know the token before it can push to this device
         // here is where you might want to send it the token for later use.
-        alert('device token = ' + result);
+//        alert('device token = ' + result);
             
             var reqData ={"AppType":"1","DeviceId":""+result+"","IPAddress":"","UserId":"0"};
             ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,IsDeviceRegResponseSuccess,errorfunction);
