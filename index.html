@@ -136,22 +136,42 @@
 
         }
 
-        function onBackKeyDown() {
+        function onBackKeyDown()
+        {
 
-            navigator.notification.confirm
-                      ('Are you sure ?',
-                        onConfirmQuit,
-                        'Quit?',
-                        'OK,Cancel'
-                          );
-        }
-
-        function onConfirmQuit(button) {
-            if (button == "1") {
-                navigator.app.exitApp();
+              var current_url = $.mobile.activePage[0].baseURI;
+            //alert(current_url);
+            
+           if(current_url == "file:///android_asset/www/index.html")
+            {
+             // alert(current_url);
+            
+		  navigator.notification.confirm
+					('Are you sure ?', 
+					  onConfirmQuit, 
+					  'Quit?', 
+					  'OK,Cancel'  
+						);
+                
             }
+           else
+            {
+                
+                 navigator.app.backHistory();
+                
+            }
+            
 
         }
+        
+        function onConfirmQuit(button)
+		  {
+			 if(button == "1")
+			 {
+			   navigator.app.exitApp(); 
+			 }
+										
+		  }
 
 
         //	navigator.splashscreen.hide();
