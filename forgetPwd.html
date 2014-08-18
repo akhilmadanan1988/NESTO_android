@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Forgot Password</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -62,7 +62,7 @@
                                     <td>
                                         <label for="textinput-fc">Email Address</label></td>
                                     <td>
-                                        <input type="text" name="text-basic" id="forgetPwd_emailId" value=""></td>
+                                        <input  maxlength="75" type="text" name="text-basic" id="forgetPwd_emailId" value=""></td>
                                 </tr>
 
                             </tbody>
@@ -76,7 +76,7 @@
                                     <td width="43%"></td>
                                     <td class="loginAreaButton" nowrap="nowrap"><a data-transition="slide" onclick="forgetPassword()" class="ui-btn ui-btn-inline pad5 logBut" id="subBut">Submit</a>
                                         <a href="index.html" data-transition="slide">
-                                            <button class="ui-btn ui-btn-inline pad5 activateBut">Login</button></a></td>
+                                            <button class="ui-btn ui-btn-inline pad5 activateBut" onclick="hideLabel()" id="logInButton">Login</button></a></td>
                                 </tr>
 
 
@@ -93,13 +93,13 @@
                             <div class="ui-block-a alignCenter" style="padding-right: 3px;">
                                 <div class="ui-bar ui-bar-a promotionImgHolder">
                                     <a href="promotions.html" data-transition="slide">
-                                        <img id="firstPromotionImage" src="images/1.jpg" /></a>
+                                        <img id="firstPromotionImage" /></a>
                                 </div>
                             </div>
                             <div class="ui-block-b alignCenter" style="padding-right: 3px; position: relative; left: 3px;">
                                 <div class="ui-bar ui-bar-a promotionImgHolder">
                                     <a href="promotions.html" data-transition="slide">
-                                        <img id="secondPromotionImage" src="images/2.jpg" /></a>
+                                        <img id="secondPromotionImage" /></a>
                                 </div>
                             </div>
                         </div>

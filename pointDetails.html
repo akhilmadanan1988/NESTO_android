@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -12,20 +12,35 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/activate-accordian.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
-	<script src="js/ajaxCall.js"></script>
-	<script src="js/PointDetails.js"></script>
-	<script type="text/javascript" charset="utf-8">
-		$(document).ready(function () {
-			$('#imgPromotionImage1').attr('src', localStorage.PromotionImage1)
-			$('#imgPromotionImage2').attr('src', localStorage.PromotionImage2)
-			fillPointDetails();
-		});
-	</script>
+    <script src="js/ajaxCall.js"></script>
+    <script src="js/PointDetails.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            $('#imgPromotionImage1').attr('src', localStorage.PromotionImage1)
+            $('#imgPromotionImage2').attr('src', localStorage.PromotionImage2)
+            //fillPointDetails();
+            $('#lblTotalPoints').text(localStorage.TotalPoints);
+            $('#lblRedeemedPoints').text(localStorage.RedeemedPoints);
+            $('#lblCurrentBalance').text(localStorage.TotalPoints - localStorage.RedeemedPoints);
+            $('#lblRedeemableBalance').text(localStorage.RedeemablePoints);
+
+            if (localStorage.GiftStatus == "Success") {
+                $('#lblEligibleGiftName').text(localStorage.GiftName);
+                $("#giftImage").attr("src", localStorage.GiftImageURL);
+            }
+            else {
+                $('#lblEligibleGiftName').text(localStorage.GiftStatus);
+            }
+			//navigator.splashscreen.hide();
+        });
+    </script>
 
 </head>
 
 <body>
     <div data-role="page" id="PointDetails" class="ui-responsive-panel">
+        <script src="js/jsEvents.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
             <img src="images/shadowLight.png" class="shadowHolder" />
             <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
@@ -33,7 +48,7 @@
             <div class="navigationHolder"></div>
             <ul data-role="listview">
                 <a onclick="CheckUserExistanceAndNavigate()" data-transition="slide">
-                    <li><span class="glyphicon glyphicon-home"></span>Home</li>
+                    <li class="activeLink"><span class="glyphicon glyphicon-home"></span>Home</li>
                 </a><a href="promotions.html" data-transition="slide">
                     <li><span class="glyphicon glyphicon-gift"></span>Promotions</li>
                 </a><a href="#" data-transition="slide">

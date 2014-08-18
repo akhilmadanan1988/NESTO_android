@@ -1,6 +1,6 @@
   document.addEventListener("deviceready", onDeviceReady, true);
 
-alert("out device ready");
+//alert("out device ready");
     var pushNotification;
 
      function onDeviceReady() {
@@ -70,8 +70,7 @@ alert("out device ready");
              case 'message':
                     
                     alert(e.payload.message);
-                    
-             
+                            
             
                     if ( e.foreground )
                         {
@@ -131,7 +130,7 @@ alert("out device ready");
             if ( event.alert )
                 {
                
-                    alert(event.alert);
+                    //alert(event.alert);
                     
                     // Schedules a local notification to be triggered after 5 seconds
            
@@ -139,13 +138,14 @@ alert("out device ready");
                 }
 
             if ( event.sound )
-                {
+			{
 //                var snd = new Media(event.sound);
 //                snd.play();
-                }
+			}
 
             if ( event.badge )
-                {
-                pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
-                }
+			{
+				PushNotification.setApplicationIconbadgenumber(0, function(){}); 
+				pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, 1);
+			}
         }

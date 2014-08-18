@@ -10,5 +10,5 @@ function ajaxcall(service,parameter,successfunction,errorfunction)
 			        success: successfunction,
 			        error:errorfunction
 			    });
-	
 }
+		

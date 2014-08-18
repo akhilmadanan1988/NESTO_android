@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Profile</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -12,16 +12,38 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/activate-accordian.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
-	
-<!--	<script>
+
+    <!--	<script>
 	$(document).ready(function() {
     onProfileLoad()
 });
+	</script>
+	<script>
+		function logOut() {
+	alert(localStorage.CardNumber +"|"+localStorage.CustomerName + "|"+localStorage.Email + "|"+localStorage.CountryID + "|"+localStorage.LastLoginDate +"|"+localStorage.UserId + "|"+localStorage.RedeemablePoints +"|"+localStorage.RedeemedPoints + "|"+localStorage.TotalPoints );
+    localStorage.CardNumber = "";
+    localStorage.CustomerName = "";
+    localStorage.Email = "";
+    localStorage.CountryID = "";
+    localStorage.LastLoginDate = "";
+    localStorage.UserId = "";
+
+    localStorage.RedeemablePoints = "";
+    localStorage.RedeemedPoints = "";
+    localStorage.TotalPoints = "";
+   
+alert(localStorage.CardNumber +"|"+localStorage.CustomerName + "|"+localStorage.Email + "|"+localStorage.CountryID + "|"+localStorage.LastLoginDate +"|"+localStorage.UserId + "|"+localStorage.RedeemablePoints +"|"+localStorage.RedeemedPoints + "|"+localStorage.TotalPoints );
+  
+ //   window.localStorage.setItem("ServiceAvailableCountries", "");
+    window.location = "index.html";
+
+}
 	</script>-->
 </head>
 <body>
+	
     <div data-role="page" id="ProfilePage" class="ui-responsive-panel">
-         <script src="js/jsEvents.js"></script>
+        
         <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
             <img src="images/shadowLight.png" class="shadowHolder" />
             <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
@@ -55,10 +77,9 @@
             <div class="container">
                 <div class="row mobilePad">
                     <div class="col-md-12 pageArea profileArea">
-                        <h2 style="text-align: left;"><a href="#" data-rel="back" data-direction="reverse"><span class="glyphicon glyphicon-chevron-left headerIcon"></span></a>PROFILE</h2>
+                        <h2 style="text-align: left;"><a href="#" onclick="showHomePage('profile')"><span class="glyphicon glyphicon-chevron-left headerIcon"></span><span class="sliderHeading">PROFILE</span></a></h2>
 
-                        <table class="table tableListing">
-
+                        <table class="table tableListing" style="margin-bottom: 0;">
                             <tbody>
                                 <tr>
                                     <td nowrap="nowrap" class="lessPadLeft">
@@ -92,13 +113,13 @@
                                         <label id="country"></label>
                                     </td>
                                 </tr>
-                                <tr>                                   
+                                <tr style="display: none" id="trMessage">
                                     <td colspan="2">
                                         <div id="message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
                                         </div>
                                         <div style="clear: both"></div>
-                                        <label for="textinput-fc">&nbsp;</label></td>
-                                  
+                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td>
@@ -106,7 +127,7 @@
                                     <td>
                                         <table>
                                             <tr>
-                                                <td class="lessPadLeft"><a href="index.html" data-transition="slide" onclick="logOut()" class="ui-btn ui-btn-inline pad5">Logout</a> </td>
+                                                <td class="lessPadLeft"><a href="javascript:void(0)" data-transition="slide" onclick="logOut()" class="ui-btn ui-btn-inline pad5">Logout</a> </td>
                                                 <td class="lessPadLeft"><a href="editProfile.html" data-transition="slide">
                                                     <button class="ui-btn ui-btn-inline pad5">Edit</button></a></td>
                                             </tr>
@@ -121,6 +142,12 @@
                 </div>
             </div>
         </div>
+        <script>
+            $("label#cardnumber").text(localStorage.CardNumber);
+            $("label#name").text(localStorage.CustomerName);
+            $("label#email").text(localStorage.Email);
+            $("label#country").text(localStorage.CountryName);
+        </script>
     </div>
 </body>
 </html>

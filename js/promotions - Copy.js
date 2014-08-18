@@ -1,49 +1,18 @@
-var selectedCountryID = "";
-
 $(document).ready(function () {
     showProfile();
-    var CountryId = localStorage.PromoCountryId;
-    if (CountryId != undefined && CountryId != null && CountryId.trim() != "") {
+    fillCountry();
+    if (localStorage.CountryID.trim() != "" && localStorage.CountryID != null && localStorage.CountryID != undefined) {
 
+        CountryId = localStorage.CountryID;
     }
     else {
-        if (localStorage.PromoCountryId != undefined && localStorage.PromoCountryId != null && localStorage.PromoCountryId.trim() != "") {
-            CountryId = localStorage.PromoCountryId;
-        }
-        else {
-            CountryId = 1;
-        }
+        CountryId = 1;
     }
-    selectedCountryID = CountryId;
-    fillCountry();
     onPromotionsLoad(CountryId);
 });
-
 document.addEventListener("backbutton", function (e) {
     showHomePage('promotions');
 }, false);
-
-
-//var defaultSelected = false;
-//var nowSelected = true;
-$("#select-choice-1").change(function () {
-    onPromotionsLoad(this.value);
-    selectedCountryID = this.value;
-	localStorage.PromoCountryId = this.value;
-});
-
-
-// Read a page's GET URL variables and return them as an associative array.
-function getUrlVars() {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    return vars;
-}
 
 function onPromotionsLoad(CountryId) {
     if (CountryId != "" && CountryId != null && CountryId != undefined) {
@@ -54,8 +23,9 @@ function onPromotionsLoad(CountryId) {
     }
 
     $('#message').css('display', 'none');
-    var reqData = { "CountryId": CountryId };
+    var reqData = { "CountryId": CountryId }
     ajaxcall("GetPromotionData", reqData, IsGetPromotionDataResponseSuccess, errorfunction);
+
 }
 
 function showProfile() {
@@ -67,9 +37,11 @@ function showProfile() {
     else {
         $("a#myButton1").text('Profile');
     }
+
 }
 
 function showProfileLink() {
+
     if (localStorage.CardNumber == undefined || localStorage.CardNumber.trim() == "") {
         $("a#myButton1").attr('href', 'index.html');
         //  $("a#myButton1").text('Login');
@@ -78,24 +50,26 @@ function showProfileLink() {
         $("a#myButton1").attr('href', 'profile.html');
         //  $("a#myButton1").text('Profile');
     }
-}
 
+}
 Storage.prototype.getArray = function (key) {
     return JSON.parse(this.getItem(key))
 }
 
 function fillCountry() {
-    var isDropDownFill = false;
+	var isDropDownFill = false;
 
     var ServiceAvailableCountry;
     try {
         ServiceAvailableCountry = window.localStorage.getItem("ServiceAvailableCountries");
     }
     catch (ex) {
+
         ServiceAvailableCountry = window.localStorage.getArray("ServiceAvailableCountries");
     }
-	
+
     if (ServiceAvailableCountry != null && ServiceAvailableCountry != "") {
+
         $('#select-choice-1').empty();
         var CountryName = "";
         var isSelected = false;
@@ -113,30 +87,18 @@ function fillCountry() {
                     CountryName = value.CountryName;
                     isSelected = true;
                 }
-
-                if (selectedCountryID != undefined && selectedCountryID != null && selectedCountryID.trim() != "") {
+                if (localStorage.CountryID != undefined && localStorage.CountryID != null && localStorage.CountryID != "") {
                     if (CountryIsExists == false) {
-                        if (selectedCountryID == value.CountryId) {
+                        if (localStorage.CountryID == value.CountryId) {
                             CountryIsExists = true;
-                            CountryName = value.CountryName;
                             isSelected = true;
                         }
                     }
                 }
-                else {
-                    if (localStorage.PromoCountryId != undefined && localStorage.PromoCountryId != null && localStorage.PromoCountryId != "") {
-                        if (CountryIsExists == false) {
-                            if (localStorage.PromoCountryId == value.CountryId) {
-                                CountryIsExists = true;
-                                CountryName = value.CountryName;
-                                isSelected = true;
-                            }
-                        }
-                    }
-                }
+
                 isDropDownFill = true;
-                if (localStorage.PromoCountryId != "" || localStorage.PromoCountryId != null || localStorage.PromoCountryId != undefined) {
-                    if (localStorage.PromoCountryId == value.CountryId) {
+                if (localStorage.CountryID != "" || localStorage.CountryID != null || localStorage.CountryID != undefined) {
+                    if (localStorage.CountryID == value.CountryId) {
                         $('#select-choice-1').append(new Option(value.CountryName, value.CountryId, true, isSelected));
                     } else {
                         $('#select-choice-1').append(new Option(value.CountryName, value.CountryId, false, isSelected));
@@ -156,16 +118,17 @@ function fillCountry() {
 
             });
 
-            //if (CountryIsExists == true) {
-            //    if (localStorage.CountryName != null && localStorage.CountryName != "") {
-            //        CountryName = localStorage.CountryName;
-            //    }
-            //}
+            if (CountryIsExists == true) {
+                if (localStorage.CountryName != null && localStorage.CountryName != "") {
+                    CountryName = localStorage.CountryName;
+                }
+            }
 
             $("#select-choice-1-button span").text(CountryName);
 
         }
         catch (ex) {
+
             isDropDownFill = false;
         }
 
@@ -176,7 +139,7 @@ function fillCountry() {
     }
 
     if (isDropDownFill == false) {
-		alert(false);
+
         var UserId, DeviceId;
         DeviceId = localStorage.DeviceId;
 
@@ -185,12 +148,14 @@ function fillCountry() {
         else
             UserId = localStorage.UserId;
         var reqData = { "DeviceId": "" + DeviceId + "", "UserId": "" + UserId + "" }
+
         ajaxcall("GetSettingsContent", reqData, IsGetSettingsContentResponseSuccess, errorfunction);
     }
 }
 
 
 function IsGetSettingsContentResponseSuccess(result) {
+
     if (result.ApiResponse.StatusCode == 1) {
         $('#select-choice-1').empty();
         var CountryName = "";
@@ -213,6 +178,12 @@ function IsGetSettingsContentResponseSuccess(result) {
 }
 
 
+//var defaultSelected = false;
+//var nowSelected = true;
+$("#select-choice-1").change(function () {
+
+    onPromotionsLoad(this.value);
+});
 function showMessage(message, isSuccess) {
 
     $("#message").html(message);
@@ -273,59 +244,44 @@ function IsGetPromotionDataResponseSuccess(result) {
         $.each(result.PromotionDetailsList, function (index, value) {
 
             if (value.PromotionCategory.toLowerCase() == "seasonal promotion") {
-                isSeasonalPromotion++;
-               	var data = "";
-				if(isSeasonalPromotion != 1){
-					data = data.concat("<div class='promotionAreaSpan'></div>");
-				}
-				data = "<div class='col-md-12 promotionArea promotionProductDetail' ><table class='table tableListing tableContent' style='margin: 13px 0;'>"
+                isSeasonalPromotion = 1;
+                var data = "<div class='col-md-12 promotionArea promotionProductDetail' ><table class='table tableListing tableContent' style='margin: 13px 0;'>"
                 data = data.concat("<tbody><tr>");
-                data = data.concat("<td width='30%'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + "&CountryId=" + selectedCountryID + " title='" + value.PromotionName + "' data-transition='slide'><img src=" + value.PromotionThumbnail + " width='240' class='acordionProduct' /></a></td>");
+                data = data.concat("<td width='30%'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + " title='" + value.PromotionName + "' data-transition='slide'><img src=" + value.PromotionThumbnail + " width='240' class='acordionProduct' /></a></td>");
                 data = data.concat("<td class='productProDetail'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + " title='" + value.PromotionName + "' data-transition='slide'><h4>" + value.PromotionName + "</h4><h5>" + value.PromotionAvailableStores + "</h5><small>From " + value.PromotionTimePeriod + " </small></a></td>");
                 data = data.concat("</tr> </tbody>");
                 data = data.concat("</table></div>");
 
                 //$('#divSeasonalPromotions').find('.ui-collapsible-content').append(data);
+                //alert(data);
                 data = data.replace(/~/g, '<br>');
                 $('#divSeasonalPromotions').find('.ui-collapsible-content').html(data);
                 // $('#hedSeasonalPromotions').addClass('ui-collapsible-heading');
 
             }
             else if (value.PromotionCategory.toLowerCase() == "week end grabs") {
-                isWeekEndGrabs++;
-				var data = "";
-				if(isWeekEndGrabs != 1){
-					data = data.concat("<div class='promotionAreaSpan'></div>");
-				}
-				data = data.concat("<div class='col-md-12 promotionArea promotionProductDetail' ><table class='table tableListing tableContent' style='margin: 13px 0;'>");
-				
+                isWeekEndGrabs = 1;
+
+                var data = "<div class='col-md-12 promotionArea promotionProductDetail' ><table class='table tableListing tableContent' style='margin: 13px 0;'>"
                 data = data.concat("<tbody><tr>");
-                data = data.concat("<td width='30%'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + "&CountryId=" + selectedCountryID + "  title='" + value.PromotionName + "' data-transition='slide'><img src=" + value.PromotionThumbnail + " width='200' class='acordionProduct' /></a></td>");
+                data = data.concat("<td width='30%'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + " title='" + value.PromotionName + "' data-transition='slide'><img src=" + value.PromotionThumbnail + " width='200' class='acordionProduct' /></a></td>");
                 data = data.concat("<td class='productProDetail'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + " title='" + value.PromotionName + "' data-transition='slide'><h4>" + value.PromotionName + "</h4><h5>" + value.PromotionAvailableStores + "</h5><small>From " + value.PromotionTimePeriod + " </small></a></td>");
                 data = data.concat("</tr> </tbody>");
                 data = data.concat("</table></div>");
-				
                 data = data.replace(/~/g, '<br>');
-                //$('#divWeekEndGrabs').find('.ui-collapsible-content').html(data);
-
-                $('#divWeekEndGrabs').find('.ui-collapsible-content').append(data);
+                $('#divWeekEndGrabs').find('.ui-collapsible-content').html(data);
 
             }
             else if (value.PromotionCategory.toLowerCase() == "special campaigns") {
-                isSpecialCampaigns++;
-                var data = "";
-				if(isSpecialCampaigns != 1){
-					data = data.concat("<div class='promotionAreaSpan'></div>");
-				} 
-				data = "<div class='col-md-12 promotionArea promotionProductDetail' ><table class='table tableListing tableContent' style='margin: 13px 0;'>"
+                isSpecialCampaigns = 1;
+                var data = "<div class='col-md-12 promotionArea promotionProductDetail' ><table class='table tableListing tableContent' style='margin: 13px 0;'>"
                 data = data.concat("<tbody><tr>");
-                data = data.concat("<td width='30%'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + "&CountryId=" + selectedCountryID + "  title='" + value.PromotionName + "' data-transition='slide'><img src=" + value.PromotionThumbnail + " width='240' class='acordionProduct' /></a></td>");
+                data = data.concat("<td width='30%'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + " title='" + value.PromotionName + "' data-transition='slide'><img src=" + value.PromotionThumbnail + " width='240' class='acordionProduct' /></a></td>");
                 data = data.concat("<td class='productProDetail'><a class='promotions'  href=gallery.html?PromotionId=" + value.PromotionId + " title='" + value.PromotionName + "' data-transition='slide'><h4>" + value.PromotionName + "</h4><h5>" + value.PromotionAvailableStores + "</h5><small>From " + value.PromotionTimePeriod + " </small></a></td>");
                 data = data.concat("</tr> </tbody>");
                 data = data.concat("</table></div>");
                 data = data.replace(/~/g, '<br>');
                 $('#divSpecialCampaigns').find('.ui-collapsible-content').html(data);
-
 
 
             }

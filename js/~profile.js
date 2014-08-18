@@ -1,31 +1,28 @@
+var email_pattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+var legalCharacters_pattern = /[a-zA-Z0-9!”$&’@#%=?&quot;().*\+\-,\/;\[\\\]\^_`{|}~ ]+$/;
+
 $(document).ready(function () {
     onProfileLoad();
 });
 
-document.addEventListener("backbutton", function (e) {
+document.addEventListener("backbutton", function(e){
     showHomePage('profile');
 }, false);
 
 function onProfileLoad() {
 
+
     if (localStorage.CardNumber == "") {
         window.location = "index.html";
     }
-    var StatusCode = 0;
-    try {
-        if (sessionStorage.StatusCode != undefined && sessionStorage.StatusCode != null && sessionStorage.StatusCode.trim() != "" && sessionStorage.StatusCode != 0) {
-            StatusCode = sessionStorage.StatusCode;
-        }
-    } catch (ex)
-    {  }
- 
-    if (StatusCode == 1) {
 
-        showMessage("Profile updated successfully",1);
-        sessionStorage.StatusCode = 0;
+    var StatusCode = getUrlVars()["StatusCode"];
+a
+    if (StatusCode == 1) {
+        showMessage("Profile updated successfully");
     }
 
-    if (localStorage.CardNumber.trim() != '' && localStorage.CustomerName.trim() != '' && localStorage.Email.trim() != '' && localStorage.CustomerName.trim() != '') {
+     if (localStorage.CardNumber.trim() != '' && localStorage.CustomerName.trim() != '' && localStorage.Email.trim() != '' && localStorage.CustomerName.trim() != '') {
 
         /*$("label#cardnumber").text(localStorage.CardNumber);
         $("label#name").text(localStorage.CustomerName);
@@ -39,7 +36,6 @@ function onProfileLoad() {
         var reqData = { "DeviceId": "" + localStorage.DeviceId + "", "UserId": "" + localStorage.UserId + "", "CountryId": localStorage.CountryId }
         ajaxcall("GetAuthenticatedUserDetails", reqData, IsAuthenticatedUserDetailsResponseSuccess, errorfunction);
 
-    }
 }
 
 
@@ -54,31 +50,18 @@ function logOut() {
     localStorage.RedeemablePoints = "";
     localStorage.RedeemedPoints = "";
     localStorage.TotalPoints = "";
-    localStorage.CountryID = "";
-    localStorage.CountryName = "";
+   
 
-	//Promotion and settings handling
-	localStorage.SettingsCountryId = "";
-	localStorage.SettingsCountryName = "";
-	localStorage.PromoCountryId = "";
-	localStorage.PromoCountryName = "";
+  
+ //   window.localStorage.setItem("ServiceAvailableCountries", "");
+    window.location = "index.html";
 
-    //   window.localStorage.setItem("ServiceAvailableCountries", "");
-	try{
-			$.mobile.changePage('index.html', {
-            	changeHash: true,  
-            	transition: 'slide' 
-        	});
-		}
-	catch(e){
-		window.location = "index.html";
-	}
 }
 
 function showMessage(message, isSuccess) {
 
     $("#trMessage").show();
-
+    
     $("#message").html(message);
     $('#message').css('display', 'block');
     if (isSuccess == 1) {
@@ -97,7 +80,7 @@ function errorfunction() {
 function IsAuthenticatedUserDetailsResponseSuccess(result) {
     if (result.ApiResponse.StatusCode == 1) {
 
-        //Save User Id in Local Database
+		//Save User Id in Local Database
         localStorage.CardNumber = result.UserDetail.CardNumber;
         localStorage.CountryID = result.UserDetail.CountryID;
         localStorage.CustomerName = result.UserDetail.CustomerName;

@@ -2,19 +2,22 @@
 <html>
 <head>
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jsEvents.js"></script>
     <script src="js/jquery.mobile-1.4.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 </head>
-<body >
+<body>
     <div data-role="page" id="settings" class="ui-responsive-panel">
         <script src="js/jsEvents.js"></script>
+<!--		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
         <!-- defaultpanel  -->
         <!-- leftpanel3  -->
         <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
@@ -43,6 +46,9 @@
             <a href="#leftpanel3" class="pull-left sliderIcon">
                 <img src="images/menu.png" /></a>
             <img src="images/logo.png" width="185" class="mobileCustomizeLogo" />
+            <div class="ui-btn-right rightNavBut">
+                <a id="myButton1" style="display: none" class="headerButton" onclick="showProfileLink();" data-transition="slide" data-role="button"></a>
+            </div>
         </div>
         <div class="seperationBar">
             <h5>All that you need.</h5>
@@ -51,14 +57,14 @@
             <div class="container">
                 <div class="row mobilePad">
                     <div class="col-md-12 pageArea ">
-                        <h2 style="text-align: left;"><a href="#" data-rel="back" data-direction="reverse"><span class="glyphicon glyphicon-chevron-left headerIcon"></span></a>SETTINGS</h2>
+                        <h2 style="text-align: left;"><a href="#" onclick="showHomePage('settings')"><span class="glyphicon glyphicon-chevron-left headerIcon"></span><span class="sliderHeading">SETTINGS</span></a></h2>
 
 
                         <h2 class="subHead">APP SETTINGS</h2>
-                        <div class="col-md-3 col-sm-4">
+                        <div class="col-md-3 col-sm-12">
                             <label>Country</label>
                         </div>
-                        <div class="col-md-9 col-sm-8 selectHolder">
+                        <div class="col-md-9 col-sm-12 selectHolder" style="padding-left:0;">
 
                             <select name="select-choice-1" id="select-choice-1" >
                                 <!-- <option value="United Arab Emirates">United Arab Emirates</option>
@@ -69,49 +75,68 @@
                             </select>
 
                         </div>
-                        <div class="col-md-3 col-sm-4 col-xs-7">
+                     <!--   <div class="col-md-3 col-sm-4 col-xs-7">
                             <label>App Details </label>
                         </div>
                         <div class="col-md-9 col-sm-8 col-xs-5">
                             <label id="version"></label>
                         </div>
+						-->
+						<table class="table tableListing tableContent notificationTable" style="margin-bottom: 0">
+                            <tbody>
+							<!-- <tr>
+                                    <td>
+                                     <label>Country</label>
+                                    </td>
+                                    <td>
+										<div class="selectHolder">
+                                        <select name="select-choice-1" id="select-choice-1" ></select>
+										</div>
+									</td>
+                                </tr>
+								-->
+								
+							 <tr>
+                                    <td>
+                                      <label>App Details </label>
+                                    </td>
+                                    <td>
+                                        <label id="version"></label>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:25%;" nowrap="nowrap">
+                                       <label>Receive Notification</label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" onchange="changeNotification()" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true" value="block" class="notificationChkbx">
+									</td>
+                                </tr>
+							</tbody>
+						</table>			
+						
+						<!--
                         <div class="col-md-3 col-sm-4 col-xs-7">
-                            <label>Recieve Notification</label>
-                        </div>
-                        <div class="col-md-9 col-sm-8 checkboxHolder col-xs-5" style="height: 38px;">
-                            <input id="checkbox1" type="checkbox" onchange="changeNotification()" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true" value="block">
-                            <!-- <label for="checkbox-mini-0"></label>-->
-                        </div>
-                        <div style="clear: both;"></div>
-                        <h2 class="subHead">GENERAL</h2>
-                        <div class="col-md-12">
-                            <a href="#" id="loyalityProgram" target="_blank">
-                                <label style="cursor: pointer;">Loyalty Program Details </label>
-                            </a>
-                        </div>
-                        <div style="clear: both;"></div>
-                        <div class="col-md-12">
-                            <a href="#" id="termsnConditions" target="_blank">
-                                <label style="cursor: pointer;">Terms and Conditions </label>
-                            </a>
-                        </div>
-                        <div style="clear: both;"></div>
-                        <div class="col-md-12">
-                            <a href="#" target="_blank" id="faq">
-                                <label style="cursor: pointer;">FAQ</label></a>
+                            <label>Receive Notification</label>
                         </div>
 
-                        <div class="col-md-12">
-                            <a href="#" target="_blank" id="specialRewards">
-                                <label>Special Rewards </label>
-                            </a>
+
+                        <div class="col-md-9 col-sm-8 checkboxHolder col-xs-5" style="height: 38px;">
+                            <input type="checkbox" onchange="changeNotification()" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true" value="block" class="notificationChkbx">
+                            
                         </div>
+						-->
                         <div style="clear: both;"></div>
-                        <div class="col-md-12">
-                            <a href="#" id="storeLocations" target="_blank">
-                                <label>Store Locations </label>
-                            </a>
-                        </div>
+                        <h2 class="subHead">GENERAL</h2>
+
+                        <ul data-role="listview" class="ui-listview settingsLinkView mobileBoderTouch">
+							<li><a id="loyalityProgram" onclick="loyalityProgramOnClick()" target="_system" rel="external" data-ajax="false">Loyalty Program Details</a></li>
+							<li><a id="termsnConditions" onclick="termsnConditionsOnClick()" target="_system" rel="external" data-ajax="false">Terms and Conditions </a></li>
+							<li><a id="faq" onclick="faqOnClick()" target="_system" rel="external" data-ajax="false">FAQ</a></li>
+							<li><a id="specialRewards" onclick="specialRewardsOnClick()" target="_system" rel="external" data-ajax="false">Special Rewards</a></li>
+							<li><a id="storeLocations" onclick="onStoreLocationsLoad()" target="_system" rel="external" data-ajax="false">Store Locations</a></li>
+                        </ul>
+
                         <div id="message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
                         </div>
                         <div style="clear: both"></div>
@@ -122,6 +147,7 @@
                 <!--end row-->
             </div>
         </div>
+		
     </div>
 </body>
 </html>

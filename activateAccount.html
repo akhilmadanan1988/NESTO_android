@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Activate Account</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -25,7 +25,7 @@
             <div class="navigationHolder"></div>
             <ul data-role="listview">
                 <a onclick="CheckUserExistanceAndNavigate()" data-transition="slide">
-                    <li><span class="glyphicon glyphicon-home"></span>Home</li>
+                    <li class="activeLink"><span class="glyphicon glyphicon-home"></span>Home</li>
                 </a><a href="promotions.html" data-transition="slide">
                     <li><span class="glyphicon glyphicon-gift"></span>Promotions</li>
                 </a><a href="#" data-transition="slide">
@@ -45,7 +45,7 @@
                 <img src="images/menu.png" /></a>
             <img src="images/logo.png" width="185" class="mobileCustomizeLogo" />
             <div class="ui-btn-right rightNavBut">
-                <a id="myButton1" class="headerButton" href="index.html" data-transition="slide" data-role="button">Login</a>
+                <a id="myButton1" onclick="hideLabel();" class="headerButton" href="index.html" data-transition="slide" data-role="button">Login</a>
             </div>
         </div>
         <div class="seperationBar">
@@ -55,7 +55,7 @@
             <div class="container">
                 <div class="row mobilePad">
                     <div class="col-md-12 pageArea">
-                        <h2 style="text-align: left;"><a href="#" data-rel="back" data-direction="reverse"><span class="glyphicon glyphicon-chevron-left headerIcon"></span></a>ACTIVATE ACCOUNT</h2>
+                        <h2 style="text-align: left;"><a href="#" onclick="showHomePage('activateaccount')"><span class="glyphicon glyphicon-chevron-left headerIcon"></span><span class="sliderHeading">ACTIVATE ACCOUNT</span></a></h2>
                         <!--accordion-->
                         <div class="one_full innerDescription mobileBoderTouch">
                             <div class="container two_third">
@@ -118,14 +118,14 @@
                                                             <td>
                                                                 <label for="textinput-fc">Name</label></td>
                                                             <td>
-                                                                <input type="text" name="text-basic" id="verify_name" value=""></td>
+                                                                <input maxlength="100" type="text" name="text-basic" id="verify_name" value=""></td>
                                                         </tr>
 
                                                         <tr>
                                                             <td>
                                                                 <label for="textinput-fc">Email Address</label></td>
                                                             <td>
-                                                                <input type="text" name="text-basic" id="verify_email" value=""></td>
+                                                                <input maxlength="75" type="text" name="text-basic" id="verify_email" value=""></td>
                                                         </tr>
 
                                                         <tr>
@@ -146,7 +146,7 @@
                                                     </tbody>
                                                 </table>
 
-                                                 <div id="verify_message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
+                                                <div id="verify_message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
                                                 </div>
                                                 <div style="clear: both"></div>
                                                 <div class="col-md-3 col-sm-4 hidden-xs">

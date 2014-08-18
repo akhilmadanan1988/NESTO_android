@@ -3,7 +3,7 @@ ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,successfunction,error
 
 function successfunction(result)
 {
-	alert(result);
+	//alert(result);
 	if (result.ApiResponse.StatusCode==1){
 		alert('logged in');
 	}

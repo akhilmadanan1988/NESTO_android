@@ -6,16 +6,18 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
+	
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jsEvents.js"></script>
     <script src="js/jquery.mobile-1.4.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div data-role="page" id="about" class="ui-responsive-panel">
+    <div data-role="page" id="noConnection" class="ui-responsive-panel">
         <script src="js/jsEvents.js"></script>
 
-        <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
+        <!--<div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
             <img src="images/shadowLight.png" class="shadowHolder" />
             <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
                 <img src="images/menu.png" width="37" /></a>
@@ -33,7 +35,7 @@
                     <li><span class="glyphicon glyphicon-cog"></span>Settings</li>
                 </a>
             </ul>
-        </div>
+        </div>-->
         <div data-role="header" class="customHeader">
             <a href="#leftpanel3" class="pull-left sliderIcon">
                 <img src="images/menu.png" /></a>
@@ -49,8 +51,16 @@
             <div class="container">
                 <div class="row mobilePad">
                     <div class="col-md-12 pageArea aboutusArea">
-                        <h2 style="text-align: left;"><a href="#" onclick="showHomePage('about')"><span class="glyphicon glyphicon-chevron-left headerIcon"></span><span class="sliderHeading">ABOUT US</span></a></h2>
-                        <div id="aboutusContent"></div>
+                        <h2>
+							<span class="sliderHeading">No Internet Connection</span></h2>
+                        <div id="aboutusContent">
+							No Internet Connection. Please connect the internet and relaunch the application.
+						</div>
+						<div class=" rightNavBut">
+                <a id="myButton1" onclick="connectionRetry();" data-transition="slide" data-role="button"><span class="glyphicon glyphicon-refresh"></span>
+							 Retry
+							</a>
+            </div>
                     </div>
                     <div id="message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
                     </div>
