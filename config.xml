@@ -14,7 +14,7 @@
 	<preference name="deployment-target" value="6.1" />
 	<preference name="DisallowOverscroll" value="true" />
     
-    
+    <gap:plugin name="org.apache.cordova.device" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
     <plugin name="NetworkStatus" value="CDVConnection" />
 		
