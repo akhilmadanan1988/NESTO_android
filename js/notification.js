@@ -1,11 +1,13 @@
   document.addEventListener("deviceready", onDeviceReady, true);
 
-alert("out device ready");
-    var pushNotification;
+alert("out device ready" + device.platform);
+
+    var pushNotification = "";
 
      function onDeviceReady() {
 	
          alert("on device ready");
+         
          pushNotification = window.plugins.pushNotification;
          
          alert(device.platform);
