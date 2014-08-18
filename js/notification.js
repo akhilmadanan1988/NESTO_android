@@ -1,14 +1,14 @@
   document.addEventListener("deviceready", onDeviceReady, true);
 
-//alert("out device ready");
+alert("out device ready");
     var pushNotification;
 
      function onDeviceReady() {
 	
-//         alert("on device ready");
+         alert("on device ready");
          pushNotification = window.plugins.pushNotification;
          
-//         alert(device.platform);
+         alert(device.platform);
          
          if ( device.platform == 'android' || device.platform == 'Android' )
                     {
@@ -42,13 +42,13 @@
         function successHandler (result) 
             {
                 
-//            alert('result = ' + result);
+            alert('result = ' + result);
                 
             }
 
         function errorHandler (error)
             {
-//            alert('error = ' + error);
+            alert('error = ' + error);
              }
 
 
@@ -62,7 +62,7 @@
             {
               case 'registered':
                     
-//                    alert(e.regid);
+                    alert(e.regid);
                     
                  var reqData ={"AppType":"2","DeviceId":""+e.regid+"","IPAddress":"","UserId":"0"};
                 ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,IsDeviceRegResponseSuccess,errorfunction);
@@ -88,16 +88,16 @@
     function IsDeviceRegResponseSuccess(result)
         {
 
-//          alert(result);
-//            var resMessage = result.ApiResponse.Message;            
-//           alert(result.ApiResponse.Message);
-//            if(resMessage == "Success")
-//                {
-//                   
-//                       alert(result.ApiResponse.Message);
-//                
-//
-//                }
+          alert(result);
+            var resMessage = result.ApiResponse.Message;            
+           alert(result.ApiResponse.Message);
+            if(resMessage == "Success")
+                {
+                   
+                       alert(result.ApiResponse.Message);
+                
+
+                }
 
 
         }
@@ -105,7 +105,7 @@
     function errorfunction()
         {
 
-//                alert(1233);
+                alert("error");
 
         }
 
