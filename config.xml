@@ -12,7 +12,7 @@
     
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     <plugin name="SplashScreen" value="CDVSplashScreen" />
-    
+    <gap:plugin name="com.phonegap.plugins.pushplugin" />
     
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
