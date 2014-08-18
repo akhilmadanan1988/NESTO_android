@@ -9,7 +9,7 @@
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
 <!--    <preference name="phonegap-version" value="2.9.0" />-->
-    
+    <gap:plugin name="org.apache.cordova.device" />
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     <plugin name="SplashScreen" value="CDVSplashScreen" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
