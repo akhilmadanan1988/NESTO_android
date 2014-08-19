@@ -3,6 +3,7 @@ document.addEventListener("deviceready", onDeviceReady, true);
 var pushNotification;
 
 function onDeviceReady() {
+    navigator.splashscreen.hide();
 	pushNotification = window.plugins.pushNotification;
 	if(localStorage.DeviceId != undefined || localStorage.DeviceId != ''){
 		if ( device.platform == 'android' || device.platform == 'Android' ){
