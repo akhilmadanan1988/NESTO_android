@@ -4,7 +4,7 @@ var pushNotification;
 
 function onDeviceReady() {
     
-    navigator.splashscreen.hide();
+//    navigator.splashscreen.hide();
     
 	pushNotification = window.plugins.pushNotification;
 	if(localStorage.DeviceId != undefined || localStorage.DeviceId != ''){
