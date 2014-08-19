@@ -4,7 +4,7 @@ var pushNotification;
 
 function onDeviceReady() {
     
-//    navigator.splashscreen.hide();
+
     
 	pushNotification = window.plugins.pushNotification;
 	if(localStorage.DeviceId != undefined || localStorage.DeviceId != ''){
@@ -142,7 +142,7 @@ function onDeviceReady() {
 
             if ( event.badge )
 			{
-//				  alert( event.badge);
+				  alert( event.badge);
 //				PushNotification.setApplicationIconbadgenumber(0, function(){}); 
 				
 				pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
