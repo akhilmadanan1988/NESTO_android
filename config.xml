@@ -13,7 +13,7 @@
 	<preference name="target-device" value="universal" />
 	<preference name="deployment-target" value="6.1" />
 	<preference name="DisallowOverscroll" value="true" />
-    
+    <preference name="AutoHideSplashScreen" value="false" />
     
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
     <plugin name="NetworkStatus" value="CDVConnection" />
