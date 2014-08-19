@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <!--  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />-->
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jsEvents.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <div data-role="page" id="tabArea" class="ui-responsive-panel profile">
+        <script src="js/jsEvents.js"></script>
+        <!-- defaultpanel  -->
+        <!-- leftpanel3  -->
+        <div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
+            <img src="images/shadowLight.png" class="shadowHolder" />
+            <a class="pull-left sliderIcon panelCloseIcon" data-rel="close">
+                <img src="images/menu.png" width="37" /></a>
+            <div class="navigationHolder"></div>
+            <ul data-role="listview">
+                <a onclick="CheckUserExistanceAndNavigate()" data-transition="slide">
+                    <li class="activeLink"><span class="glyphicon glyphicon-home"></span>Home</li>
+                </a><a onclick="NavigateToPromotion()" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-gift"></span>Promotions</li>
+                </a><a href="#" data-transition="slide">
+                    <li onclick="onStoreLocationsLoad()"><span class="glyphicon glyphicon-map-marker"></span>Store Locations</li>
+                </a><a href="about.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-info-sign"></span>About Us</li>
+                </a><a href="settings.html" data-transition="slide">
+                    <li><span class="glyphicon glyphicon-cog"></span>Settings</li>
+                </a>
+            </ul>
+        </div>
+        <!-- /leftpanel3 -->
+        <!-- /defaultpanel -->
+        <div data-role="header" class="customHeader">
+            <!-- <a href="#leftpanel3" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid ui-btn-icon-notext"></a>-->
+            <a href="#leftpanel3" class="pull-left sliderIcon">
+                <img src="images/menu.png" /></a>
+            <img src="images/logo.png" width="185" class="mobileCustomizeLogo" />
+            <div class="ui-btn-right rightNavBut">
+                <a id="myButton1" class="headerButton" href="profile.html" data-transition="slide" data-role="button">Profile</a>
+            </div>
+        </div>
+        <div class="seperationBar">
+            <h5>All that you need.</h5>
+        </div>
+        <div data-role="content" class="contentHolder">
+            <div class="container">
+                <div class="row mobilePad">
+                    <div class="col-md-12 pageArea">                      
+                        <h2 style="text-align: left;"><a href="#" onclick="showHomePage('editprofile')"><span class="glyphicon glyphicon-chevron-left headerIcon"></span><span class="sliderHeading">EDIT PROFILE</span></a></h2>
+
+
+                        <table class="table tableListing tableContent" style="margin-bottom: 0">
+                            <tbody>
+                                <tr>
+                                    <td nowrap="nowrap" class="lessPadLeft">
+                                        <label for="textinput-fc">Card Number</label>
+
+                                    <td>
+                                        <label id="cardnumber"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="textinput-fc">Name</label></td>
+                                    <td>
+                                        <input type="text" name="text-basic" id="name" value=""></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="textinput-fc">Email Address</label></td>
+                                    <td>
+                                        <input type="text" name="text-basic" id="email" value=""></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="textinput-fc">Change Password</label></td>
+                                    <td class="checkboxHolder">
+                                        <input id="checkbox" type="checkbox" name="checkbox-mini-0" data-mini="true" value="block">
+                                        <label id="checkbox-mini" for="checkbox-mini-0"></label>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+
+
+                        <!--hiddenForm-->
+                        <div class="hiddenFields">
+
+                            <table class="table tableListing tableContent" style="margin-bottom: 0">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="textinput-fc">Current Password</label></td>
+                                        <td>
+                                            <input type="password" name="text-basic" id="currentPassword" value=""></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="textinput-fc">New Password</label></td>
+                                        <td>
+                                            <input type="password" name="text-basic" id="newPassword" value=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="textinput-fc">Retype Password</label></td>
+                                        <td>
+                                            <input type="password" name="text-basic" id="retypePassword" value=""></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <!--hiddenForm-->
+
+
+                        <div id="message" class="col-md-12 visibleRow" style="background-color: rgb(226, 110, 110); color: #fff; text-align: center; font-size: 13px; padding: 4px; display: none">
+                        </div>
+                        <div style="clear: both"></div>
+
+
+                        <table class="table tableListing tableContent" style="margin-bottom: 0">
+                            <tbody>
+                                <tr>
+                                    <td width="38%">
+                                        <label for="textinput-fc">&nbsp;</label></td>
+                                    <td><a href="#" data-transition="slide" class="ui-btn ui-btn-inline pad5 saveBut" onclick="onSave()">Save</a></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </div>
+        <script>
+            $("label#cardnumber").text(localStorage.CardNumber);
+            $("input#name").val(localStorage.CustomerName);
+            $("input#email").val(localStorage.Email);
+        </script>
+    </div>
+
+</body>
+</html>
