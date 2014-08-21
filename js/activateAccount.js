@@ -4,6 +4,10 @@ document.addEventListener("backbutton", function (e) {
 }, false);
 
 function activateAccount() {
+	var docHeight = $('body').height();
+	$(".ui-loader").height(docHeight);
+	$.mobile.loading('show', { theme: 'a',text: "",textonly: false, textVisible: false });
+	
     var message = ""
     $("div#message").html("");
     $('div#message').css('display', 'none');
@@ -16,7 +20,7 @@ function activateAccount() {
                 if ($('#activateAccount_mobileno').val() != "") {
                     if (IsValidMobileNumber($('#activateAccount_mobileno').val())) {
                         if (($('#activateAccount_mobileno').val().length >= 9) && ($('#activateAccount_mobileno').val().length <= 15)) {
-                            $.mobile.loading('show', { theme: 'a', textVisible: 'true' });
+                            //$.mobile.loading('show', { theme: 'a', textVisible: 'true' });
                             var reqData = { "CardNumber": "" + $('#activateAccount_cardNumber').val() + "", "MobileNumber": "" + $('#activateAccount_mobileno').val() + "" }
                             ajaxcall("ValidateActivateAccountForm", reqData, IsActivateAccountResponseSuccess, errorfunctionActivate);
                         }
@@ -50,6 +54,7 @@ function activateAccount() {
         showActivateMessage("Please enter your card number.", 0, "activate");
         $("#activateAccount_cardNumber").focus();
     }
+	$.mobile.loading('hide');
 }
 
 
@@ -79,20 +84,22 @@ function showActivateMessage(message, isSuccess, page) {
 }
 
 function errorfunctionActivate() {
-    $.mobile.loading('hide');
+    //$.mobile.loading('hide');
     showActivateMessage("Some error occured, please try after sometime", 0, "activate");
     $("#activateAccount_cardNumber").focus();
+	$.mobile.loading('hide');
 }
 
 
 function errorfunctionVerify() {
-    $.mobile.loading('hide');
+    //$.mobile.loading('hide');
     showActivateMessage("Some error occured, please try after sometime", 0, "verify");
     $("#verify_name").focus();
+	$.mobile.loading('hide');
 }
 //var cardNumber ,countryId ;
 function IsActivateAccountResponseSuccess(result) {
-    $.mobile.loading('hide');
+    //$.mobile.loading('hide');
     $('#collapseTwo').css('display', 'none');
 
     if (result.ApiResponse.StatusCode == 1) {
@@ -113,17 +120,22 @@ function IsActivateAccountResponseSuccess(result) {
 
         cardNumber = result.UserDetail.CardNumber;
         countryId = result.UserDetail.CountryID;
+		$.mobile.loading('hide');
     }
     else {
         showActivateMessage(result.ApiResponse.Details, 0, "activate");
         //$("#activateAccount_cardNumber").val("");
         //$("#activateAccount_mobileno").val("");
         $("#activateAccount_cardNumber").focus();
-
+		$.mobile.loading('hide');
     }
 }
 
 function verifyAccount() {
+	var docHeight = $('.ui-mobile').height();
+	$(".ui-loader").height(docHeight);
+	$.mobile.loading('show', { theme: 'a',text: "",textonly: false, textVisible: false });
+	
     //var cardNumber = localStorage.CardNumber;
     //var countryId = localStorage.CountryID;
    
@@ -137,7 +149,7 @@ function verifyAccount() {
                                 if ($('#verify_retypepassword').val() != "") {
                                     if (($('#verify_password').val().length > 5) && ($('#verify_password').val().length < 13)) {
                                         if ($('#verify_password').val() == $('#verify_retypepassword').val()) {
-                                            $.mobile.loading('show', { theme: 'a', textVisible: 'true' });
+                                            //$.mobile.loading('show', { theme: 'a', textVisible: 'true' });
                                             //var encrypted = CryptoJS.TripleDES.encrypt($('#verify_password').val() , "3ARZARPA55K3Y"); 
                                             //alert(encrypted);
                                             var encryptPassword = EncryptPasswordUsingDES($('#verify_password').val());
@@ -194,6 +206,7 @@ function verifyAccount() {
         showActivateMessage("Please enter your name.", 0, "verify");
         $("#verify_name").focus();
     }
+	$.mobile.loading('hide');
 }
 
 function IsVerifyResponseSuccess(result) {
@@ -222,11 +235,13 @@ function IsVerifyResponseSuccess(result) {
         }
 
         window.location = "pointDetails.html";
+		//$.mobile.loading('hide');
+		//slidePage('pointDetails.html');
     }
     else {
         showActivateMessage(result.ApiResponse.Details, 0, "verify");
         $("#verify_name").focus();
-
+		$.mobile.loading('hide');
     }
 }
 

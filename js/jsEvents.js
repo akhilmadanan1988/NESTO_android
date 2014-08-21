@@ -37,7 +37,7 @@ $(function () {
             $.getScript('js/forgotPassword.js');
         }
         else if (_thisid === 'activateAccount') {
-            $.getScript('js/activateAccount.js');
+			$.getScript('js/activateAccount.js');
         }
         else if (_thisid == 'PointDetails') {
             $.getScript('js/PointDetails.js');
@@ -49,7 +49,7 @@ $(function () {
             $.getScript('js/editProfile.js');
         }
         else if (_thisid === 'about') {
-            var docHeight = $('#about').height();
+            var docHeight = $('.ui-mobile').height();
 			$(".ui-loader").height(docHeight);
             $.mobile.loading('show', { theme: 'a',text: "",textonly: false, textVisible: false });
             $.getScript('js/aboutUs.js');
@@ -79,14 +79,21 @@ $(function () {
         $('.visibleRow').css("display", "block");
     });
 });
-
-document.addEventListener("deviceready", onDeviceReady_Events, false);
+var i = 0;
+document.addEventListener("deviceready", onDeviceReady_Events, true);
 
 // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 function onDeviceReady_Events() {
         // Register the event listener
 		//alert("id:"+device.uuid+" | "+"plat : "+device.platform);
+		
+	
+	if(i == 0)
+	{
+//		alert(132);
 		checkConnection();
+		i++ ;
+	}
         document.addEventListener("backbutton", onBackKeyDown, false);
  }
 
@@ -301,7 +308,7 @@ function IsValidInteger(input) {
 
 function IsValidMobileNumber(input) {
     if (input.trim() != '') {
-        if (input.match(/(^[1-9][0-9]*$)/i) != null) {
+        if (input.match(/(^[0-9][0-9]*$)/i) != null) {
             return true;
         }
         else
@@ -387,7 +394,8 @@ function showHomePage(page) {
             }
         }
         else {
-            window.location = "index.html";
+            //window.location = "index.html";
+			slidePage('index.html');
         }
     }
 }
@@ -450,3 +458,17 @@ function onBackKeyDown() {
                 window.history.back();
             }
 }*/
+
+
+function slidePage(pageName)
+{
+	try{
+		$.mobile.changePage(pageName, {
+			changeHash: true,  
+			transition: 'slide' 
+		});
+	}
+	catch(e){
+		window.location = pageName;
+	}
+}

@@ -16,7 +16,7 @@ document.addEventListener("backbutton", function (e) {
 }, false);
 
 function onLoad() {
-    var countryId = "";
+    var countryId = 1;
     //if (localStorage.SettingsCountryID != null && localStorage.SettingsCountryID != "") {
     //    countryId = localStorage.SettingsCountryID;
     //}
@@ -28,10 +28,11 @@ function onLoad() {
         countryId = localStorage.CountryID;
     }
     else {
-        countryId = 0;
+        countryId = 1;
     }
+	
     if (countryId == "") {
-        countryId = 0;
+        countryId = 1;
     }
     var reqData = { "PageName": "mobile_about", "CountryId": countryId }
     ajaxcall("GetPageContent", reqData, IsGetPageContentResponseSuccess, errorfunction);
@@ -45,7 +46,6 @@ function showProfile() {
     else {
         $("a#myButton1").text('Profile');
     }
-
 }
 
 function showProfileLink() {

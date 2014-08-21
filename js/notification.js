@@ -3,9 +3,6 @@ document.addEventListener("deviceready", onDeviceReady, true);
 var pushNotification;
 
 function onDeviceReady() {
-    
-
-    
 	pushNotification = window.plugins.pushNotification;
 	if(localStorage.DeviceId != undefined || localStorage.DeviceId != ''){
 		if ( device.platform == 'android' || device.platform == 'Android' ){
@@ -18,70 +15,56 @@ function onDeviceReady() {
      }
      else{
 		 pushNotification.register(
-                            tokenHandler,
-                            errorHandler, {
-                                "badge":"true",
-                                "sound":"true",
-                                "alert":"true",
-                                "ecb":"onNotificationAPN"
-                            });
-                }
-		 }
-         
-        
-        } 
+			 tokenHandler,
+			 errorHandler, {
+				 "badge":"true",
+				 "sound":"true",
+				 "alert":"true",
+				 "ecb":"onNotificationAPN"
+			 });
+      	}
+	}
+} 
 
 
-        function successHandler (result) 
-            {
-                
+function successHandler (result) {
 //            alert('result = ' + result);
-                
-            }
+}
 
-        function errorHandler (error)
-            {
+function errorHandler (error){
 //            alert('error = ' + error);
-             }
+}
 
 
 //Android push notification handler
-  function onNotificationGCM(e) 
-    {
-        
+function onNotificationGCM(e){
 //   alert(123);
-        
-        switch( e.event )
-            {
-              case 'registered':
-                    
+        switch( e.event ){
+             case 'registered':
 //                    alert(e.regid);
 					localStorage.DeviceId = e.regid;
-                    
-                 var reqData ={"AppType":"2","DeviceId":""+e.regid+"","IPAddress":"","UserId":"0"};
-                ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,IsDeviceRegResponseSuccess,errorfunction);
+					var reqData ={"AppType":"2","DeviceId":""+e.regid+"","IPAddress":"","UserId":"0"};
+                	ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,IsDeviceRegResponseSuccess,errorfunction);
                     
              case 'message':
-                    
-                    alert(e.payload.message);
+                   // alert(e.payload.message);
+				navigator.notification.confirm(
+						e.payload.message,
+						gotoIndex,
+                        'Push Notification',
+                        'OK'
+                     );
+				window.location = "index.html";
+                    if ( e.foreground ){
                             
-            
-                    if ( e.foreground )
-                        {
+                    }
+                    else{
                             
-                        }
-                    else
-                        {
-                            
-                        }
-                    
-            }
-    }
+                    }
+        }
+}
 
-
-    function IsDeviceRegResponseSuccess(result)
-        {
-
+function IsDeviceRegResponseSuccess(result){
 //          alert(result);
 //            var resMessage = result.ApiResponse.Message;            
 //           alert(result.ApiResponse.Message);
@@ -93,15 +76,12 @@ function onDeviceReady() {
 //
 //                }
 
+}
 
-        }
-
-    function errorfunction()
-        {
-
+function errorfunction(){
 //                alert(1233);
 
-        }
+}
 
 
 // iOS
@@ -116,18 +96,23 @@ function onDeviceReady() {
         // here is where you might want to send it the token for later use.
 //        alert('device token = ' + result);
             localStorage.DeviceId = result;
-            var reqData ={"AppType":"1","DeviceId":""+result+"","IPAddress":"","UserId":"0"};
+            var reqData = {"AppType":"1","DeviceId":""+result+"","IPAddress":"","UserId":"0"};
             ajaxcall("UpdateUserDetailsAndFetchDefaultCountry",reqData,IsDeviceRegResponseSuccess,errorfunction);
-//            
-        }
+}
 
-    function onNotificationAPN (event)
+function onNotificationAPN (event)
         {
 			 //alert(event);
             if ( event.alert )
                 {
                
-                    alert(event.alert);
+                   // alert(event.alert);
+					navigator.notification.confirm(
+						event.alert,
+						gotoIndex,
+                        'Push Notification',
+                        'OK'
+                     );
                     
                     // Schedules a local notification to be triggered after 5 seconds
            
@@ -142,10 +127,14 @@ function onDeviceReady() {
 
             if ( event.badge )
 			{
-				  alert( event.badge);
+//				alert( event.badge);
 //				PushNotification.setApplicationIconbadgenumber(0, function(){}); 
-				
-				pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
+				pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, 0);
 				
 			}
         }
+
+function gotoIndex()
+{
+window.location = "index.html";	
+}

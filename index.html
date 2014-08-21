@@ -22,16 +22,14 @@
     <script src="js/login.js"></script>
 
     <script type="text/javascript" charset="utf-8">
-        
-        document.addEventListener("deviceready", onDeviceReadyIndex, true);
-        
-        function onDeviceReadyIndex() 
-            {
-    
-    navigator.splashscreen.hide();
-            
-            }
-        
+		 document.addEventListener("deviceready",onDeviceReadyIndex,false);
+		
+		 function onDeviceReadyIndex() {
+			 
+			 navigator.splashscreen.hide();
+			 
+		 }
+		
         $(document).bind("pagebeforechange", function (event, data) {
 			if (localStorage != null) {
                 if (localStorage.CardNumber != '' && localStorage.StorePassword != '' && localStorage.CardNumber != undefined && localStorage.StorePassword != undefined) {

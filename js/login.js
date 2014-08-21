@@ -121,6 +121,7 @@ function IsLoginResponseSuccess(result) {
 		navigator.splashscreen.hide();
         //$.mobile.loading('hide');
         window.location = "pointDetails.html";
+		//slidePage("pointDetails.html");
     }
     else {
 		$.mobile.loading('hide');
@@ -141,4 +142,17 @@ function populateDB(tx) {
     tx.executeSql('INSERT INTO LoginDetails (id, data,key,value) VALUES (2, "CustomerName","' + localStorage.CustomerName + '")');
     tx.executeSql('INSERT INTO LoginDetails (id, data,key,value) VALUES (3, "Email","' + localStorage.Email + '")');
     tx.executeSql('INSERT INTO LoginDetails (id, data,key,value) VALUES (4, "CountryID","' + localStorage.CountryID + '")');
+}
+
+function slidePage(pageName)
+{
+	try{
+		$.mobile.changePage(pageName, {
+			changeHash: true,  
+			transition: 'slide' 
+		});
+	}
+	catch(e){
+		window.location = pageName;
+	}
 }
